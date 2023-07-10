@@ -1,8 +1,5 @@
 import React from "react";
 
-import phoneimg from "../images/phone-icon.png";
-import mailimg from "../images/mail-icon.png";
-
 function Contact(props) {
     return (
         <>
@@ -10,11 +7,11 @@ function Contact(props) {
                 <img src={props.img} alt="cat-img" />
                 <h3>{props.name}</h3>
                 <div className="info-group">
-                    <img src={phoneimg} alt="phone" />
+                    <img src="phone-icon.png" alt="phone" />
                     <p>{props.phone}</p>
                 </div>
                 <div className="info-group">
-                    <img src={mailimg} alt="mail" />
+                    <img src="mail-icon.png" alt="mail" />
                     <p>{props.email}</p>
                 </div>
             </div>

@@ -1,11 +1,42 @@
 import React from "react";
-import katie from "../images/katie-zaferes.png";
 
-function Card() {
+function Card(props) {
+    let badgeText;
+    if (props.openSpots === 0) {
+        badgeText = "SOLD OUT";
+    } else if (props.country === "Online") {
+        badgeText = "ONLINE";
+    }
+
     return (
-        <div className="card" style={{ fontSize: "12px", width: "176px" }}>
+        <div
+            style={{
+                fontSize: "12px",
+                width: "176px",
+                flex: "0 0 auto",
+                // for horizntal scrolling of cards
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+            }}
+        >
+            {badgeText && (
+                <div
+                    style={{
+                        position: "absolute",
+                        top: "6px",
+                        left: "6px",
+                        backgroundColor: "white",
+                        padding: "5px 7px",
+                        borderRadius: "2px",
+                        fontWeight: "bold",
+                    }}
+                >
+                    {badgeText}
+                </div>
+            )}
             <img
-                src={katie}
+                src={props.image}
                 alt="katie-img"
                 style={{
                     height: "235px",
@@ -13,28 +44,40 @@ function Card() {
                     borderRadius: "8.95px",
                 }}
             />
-            <div className="details">
+            <div>
                 <div
-                    className="stats"
-                    style={{ display: "flex", alignItems: "center" }}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                    }}
                 >
                     <img
                         src="/star.png"
                         alt="star"
-                        className="star"
                         style={{
                             width: "14px",
                             height: "14px",
                             marginRight: "2px",
                         }}
                     />
-                    <span className="ratings">5.0 </span>
-                    <span className="ratings-count">(6) </span>
-                    <span className="country">USA</span>
+                    <span>{props.rating}</span>
+                    <span>({props.ratingsCount})</span>
+                    <span>{props.country}</span>
                 </div>
-                <p className="description">Life lessons with Katie Zaferes</p>
-                <p className="price">
-                    <b>From $136</b>/person
+                <p
+                    style={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                    }}
+                >
+                    {props.description}
+                </p>
+                <p
+                    style={{
+                        marginTop: "auto",
+                    }}
+                >
+                    <b>From ${props.price}</b>/person
                 </p>
             </div>
         </div>
